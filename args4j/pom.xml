@@ -9,7 +9,7 @@
   <artifactId>args4j</artifactId>
   <name>args4j</name>
 
-  <packaging>bundle</packaging>
+  <packaging>jmod</packaging>
   
   <build>
     <sourceDirectory>src</sourceDirectory>
@@ -31,6 +31,66 @@
         </includes>
       </testResource>
     </testResources>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.22.1</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.1.0</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <addClbundleasspath>true</addClbundleasspath>
+            </manifest>
+          </archive>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+            <configuration>
+              <classifier>client</classifier>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jmod-plugin</artifactId>
+        <version>3.0.0-alpha-2-SNAPSHOT</version>
+        <extensions>true</extensions>
+        <configuration>
+          <modulePath>target/jmods</modulePath>
+          <moduleVersion>${project.version}</moduleVersion>
+        </configuration>
+        <executions>
+          <execution>
+            <id>list</id>
+            <goals>
+              <goal>list</goal>
+            </goals>
+            <phase>verify</phase>
+          </execution>
+          <execution>
+            <id>describe</id>
+            <goals>
+              <goal>describe</goal>
+            </goals>
+            <phase>verify</phase>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
   </build>
   <dependencies>
     <dependency>
