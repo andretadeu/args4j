@@ -44,7 +44,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-shade-plugin</artifactId>
-        <version>1.4</version>
+        <version>3.2.1</version>
         <executions>
           <execution>
             <phase>package</phase>
@@ -74,7 +74,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.11</version>
+      <version>4.12</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -84,21 +84,4 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-  <profiles>
-    <profile>
-      <id>jdk-tools-jar</id>
-      <activation>
-        <os><family>!mac</family></os>
-      </activation>
-      <dependencies>
-        <dependency>
-          <groupId>jdk</groupId>
-          <artifactId>tools</artifactId>
-          <version>5.0</version>
-          <scope>system</scope>
-          <systemPath>${java.home}/../lib/tools.jar</systemPath>
-        </dependency>
-      </dependencies>
-    </profile>
-  </profiles>
 </project>
